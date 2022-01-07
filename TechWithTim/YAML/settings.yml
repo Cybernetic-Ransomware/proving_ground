@@ -1,0 +1,20 @@
+---
+person:
+  name: 'Andrew'
+  age: 16
+  weight: 106.5
+  is_gourmet: true
+  fav_colours:
+    - 'blue'
+    - 'azure'
+    - 'cheese-green'
+  fav_dish:
+    - soup: 'kapusniak'
+      cook: 'Michael'
+    - main_dish: 'calzone'
+      cook: 'Jean-Pierre'
+    - apperitive: 'sour cream'
+      cook: 'John Paul'
+
+
+# YAML file format support commands
