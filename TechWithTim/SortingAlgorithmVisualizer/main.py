@@ -10,15 +10,13 @@ pygame.init()
 class DrawInformation:
 
     CLRS = {
-        'RED': (255, 0, 0),
+        'YELLOW': (238, 255, 65),
         'GREEN': (0, 255, 0),
         'BLUE': (0, 0, 255),
-        'YELLOW': (255, 255, 0),
         'WARM_WHITE': (255, 243, 224),
         'BLACK': (0, 0, 0),
         'PURPLE': (128, 0, 128),
-        'ORANGE': (255, 165, 0),
-        'TURQUOISE': (64, 224, 208)
+        'LIMON': (198, 255, 0),
     }
     
     BACKGROUND_COLOR = CLRS['WARM_WHITE']
@@ -68,7 +66,7 @@ def bubble_sorting(draw_info, ascending = True):
             count += 1
             if (w_array[i] > w_array[i + 1] and ascending) or (w_array[i] < w_array[i + 1] and not ascending):
                 w_array[i], w_array[i + 1] = w_array[i + 1], w_array[i]
-                draw_data_bars(draw_info, {i: draw_info.CLRS['RED'], i + 1: draw_info.CLRS['ORANGE']}, True)
+                draw_data_bars(draw_info, {i: draw_info.CLRS['YELLOW'], i + 1: draw_info.CLRS['LIMON']}, True)
                 swapped = True
                 yield True
         temp += 1
