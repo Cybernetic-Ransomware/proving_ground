@@ -8,4 +8,3 @@ print(generate('012345', size=10))
 print('-' * 20)
 
 print(non_secure_generate())
-print([1, 2, 3 | 0])
