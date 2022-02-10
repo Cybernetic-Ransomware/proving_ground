@@ -19,6 +19,7 @@ class MyGUI:
         self.lbl_001.pack(padx=BASIC_PADDING, pady=BASIC_PADDING * 2)
 
         self.txb_001 = tk.Text(self.root, height=5, width=WIN_SIZE[1], font=(BASIC_FONT_TYPE, 12))
+        self.txb_001.bind("<KeyPress>", self.shortcut)
         self.txb_001.pack(padx=BASIC_PADDING, pady=BASIC_PADDING)
 
         self.chk_btn_001_state = tk.BooleanVar()
@@ -36,9 +37,16 @@ class MyGUI:
         if self.chk_btn_001_state.get():
             print(self.txb_001.get('1.0', tk.END))
             messagebox.showinfo(title='Response',
-                                message=f"Did you said \"{(self.txb_001.get('1.0', tk.END)).lower()[:-1]}\"?")
+                                message=f"Did you said \"{(self.txb_001.get('1.0', tk.END)).lower()}\"?"
+                                .replace('\n', ''))
         else:
             print('Monke doesn\'t response')
+
+    def shortcut(self, event):
+        # print(f'{event.state = }')
+        # print(f'{event.keysym = }')
+        if event.state == 40 and event.keysym == 'Return':
+            self.show_message()
 
 
 MyGUI()
