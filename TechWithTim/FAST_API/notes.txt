@@ -1,0 +1,10 @@
+Advantages of FAST API:
+ - automate data validation,
+ - auto-documentation,
+ - autocompletion in ide?
+
+Running api terminal command:
+ uvicorn fapi_test:app --reload
+
+Auto-documentation:
+ http://127.0.0.1:8000/docs
