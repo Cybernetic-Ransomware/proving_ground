@@ -39,7 +39,7 @@ def get_item_detail(item_id: int, detail: str):
             response = str(inventory[item_id][detail])
         elif inventory.get(item_id):
             response = f"No such parameter in inventory position number: {item_id}"
-    except KeyError:
+    except AttributeError:
         response = "No such position in inventory"
 
     return response
