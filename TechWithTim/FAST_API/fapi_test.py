@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Path
 
 app = FastAPI()
 
@@ -26,7 +26,7 @@ def second_response():
 
 
 @app.get('/get-item/{item_id}')
-def get_item(item_id: int):
+def get_item(item_id: int = Path(None, description='ID of the item.', gt=0, lt=4)):
     return inventory[item_id]
 
 
@@ -43,3 +43,14 @@ def get_item_detail(item_id: int, detail: str):
         response = "No such position in inventory"
 
     return response
+
+
+@app.get('/get-by-name')
+def get_item(name: str):
+    for item_id in inventory:
+        if inventory[item_id]['name'] == name:
+            return inventory[item_id]
+    return {'data': 'not found'}
+
+    # parameter 'name' is setting by default as query parameter is not mentioned in address route
+    # example: http://127.0.0.1:8000/get-by-name?name=rubber
