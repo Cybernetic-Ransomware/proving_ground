@@ -28,3 +28,18 @@ def second_response():
 @app.get('/get-item/{item_id}')
 def get_item(item_id: int):
     return inventory[item_id]
+
+
+@app.get('/get-item/{item_id}/{detail}')
+def get_item_detail(item_id: int, detail: str):
+    response = ''
+
+    try:
+        if inventory.get(item_id).get(detail):
+            response = str(inventory[item_id][detail])
+        elif inventory.get(item_id):
+            response = f"No such parameter in inventory position number: {item_id}"
+    except KeyError:
+        response = "No such position in inventory"
+
+    return response
