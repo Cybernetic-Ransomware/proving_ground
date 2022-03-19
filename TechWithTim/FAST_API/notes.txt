@@ -3,7 +3,7 @@ Advantages of FAST API:
  - auto-documentation,
  - autocompletion in ide?
 
-Running api terminal command:
+Running api - terminal command:
  uvicorn fapi_test:app --reload
 
 Auto-documentation:
