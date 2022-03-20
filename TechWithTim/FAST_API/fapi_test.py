@@ -1,4 +1,6 @@
 from fastapi import FastAPI, Path
+from typing import Optional
+
 
 app = FastAPI()
 
@@ -46,11 +48,22 @@ def get_item_detail(item_id: int, detail: str):
 
 
 @app.get('/get-by-name')
-def get_item(name: str):
+def get_item_by_name(name: Optional[str] = None):
     for item_id in inventory:
         if inventory[item_id]['name'] == name:
             return inventory[item_id]
     return {'data': 'not found'}
 
     # parameter 'name' is setting by default as query parameter is not mentioned in address route
+    # (name: Optional[str] = None) makes parameter optional
     # example: http://127.0.0.1:8000/get-by-name?name=rubber
+    # another parameter in request can be added after &, e.g. /get-by-name?name=rubber&test=test
+
+    # aand... mixing:
+
+
+@app.get('/get-by-mixing/{item_id}')
+def get_item_with_mixing(*, item_id: int, name: Optional[str] = None, test: int):
+    if inventory[item_id]['name'] == name:
+        return inventory[item_id]['name']
+    return {'data': 'not found'}
