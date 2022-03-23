@@ -9,6 +9,12 @@ class Item(BaseModel):
     useful: Optional[str] = None
 
 
+class UpdateItem(BaseModel):
+    name: Optional[str] = None
+    length: Optional[float] = None
+    useful: Optional[str] = None
+
+
 app = FastAPI()
 
 
@@ -90,5 +96,16 @@ def create_item(item_id: int, item: Item):
     # FastAPI can auto-replace json into class values
 
     inventory[item_id] = item
+
+    return inventory[item_id]
+
+
+@app.put('/update-item{}')
+def update_item(item_id: int, item: UpdateItem):
+    if item_id not in inventory:
+        return {'Error': 'Item id does not exists.'}
+
+    inventory[item_id].update(item)
+    # can update even if there is not sent all parameters
 
     return inventory[item_id]
