@@ -1,18 +1,25 @@
 from fastapi import FastAPI, Path
 from typing import Optional
+from pydantic import BaseModel
+
+
+class Item(BaseModel):
+    name: str
+    length: float
+    useful: Optional[str] = None
 
 
 app = FastAPI()
 
 inventory = {
     1: {'name': 'pen',
-        'length': 'short',
+        'length': 15.2,
         'useful': 'high'},
     2: {'name': 'rubber',
-        'length': 'mid',
+        'length': 10.5,
         'useful': 'very high'},
     3: {'name': 'tiepin',
-        'length': 'mid',
+        'length': 5.8,
         'useful': 'average'},
 }
 
@@ -63,7 +70,12 @@ def get_item_by_name(name: Optional[str] = None):
 
 
 @app.get('/get-by-mixing/{item_id}')
-def get_item_with_mixing(*, item_id: int, name: Optional[str] = None, test: int):
-    if inventory[item_id]['name'] == name:
+def get_item_with_mixing(*, item_id: int, name: Optional[str] = None, test: bool):
+    if inventory[item_id]['name'] == name and test:
         return inventory[item_id]['name']
     return {'data': 'not found'}
+
+
+@app.post('/create-item')
+def create_item(item: Item):
+    return {}
