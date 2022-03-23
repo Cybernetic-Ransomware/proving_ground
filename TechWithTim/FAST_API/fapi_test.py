@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Path, Query
+from fastapi import FastAPI, Path, Query, HTTPException, status
 from typing import Optional
 from pydantic import BaseModel
 
@@ -66,7 +66,8 @@ def get_item_by_name(name: Optional[str] = None):
     for item_id in inventory:
         if inventory[item_id]['name'] == name:
             return inventory[item_id]
-    return {'data': 'not found'}
+    # return {'data': 'not found'}
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Item name not found.')
 
     # parameter 'name' is setting by default as query parameter is not mentioned in address route
     # (name: Optional[str] = None) makes parameter optional
