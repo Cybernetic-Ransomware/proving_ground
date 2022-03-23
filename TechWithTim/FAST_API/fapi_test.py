@@ -105,7 +105,13 @@ def update_item(item_id: int, item: UpdateItem):
     if item_id not in inventory:
         return {'Error': 'Item id does not exists.'}
 
-    inventory[item_id].update(item)
-    # can update even if there is not sent all parameters
+    if item.name is not None:
+        inventory[item_id]['name'] = item.name
+
+    if item.length is not None:
+        inventory[item_id]['length'] = item.length
+
+    if item.useful is not None:
+        inventory[item_id]['useful'] = item.useful
 
     return inventory[item_id]
