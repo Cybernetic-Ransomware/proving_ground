@@ -11,6 +11,7 @@ class Item(BaseModel):
 
 app = FastAPI()
 
+
 inventory = {
     1: {'name': 'pen',
         'length': 15.2,
@@ -35,7 +36,7 @@ def second_response():
 
 
 @app.get('/get-item/{item_id}')
-def get_item(item_id: int = Path(None, description='ID of the item.', gt=0, lt=4)):
+def get_item(item_id: int = Path(None, description='ID of the item.', gt=0, lt=max(inventory.keys())+1)):
     return inventory[item_id]
 
 
@@ -76,6 +77,18 @@ def get_item_with_mixing(*, item_id: int, name: Optional[str] = None, test: bool
     return {'data': 'not found'}
 
 
-@app.post('/create-item')
-def create_item(item: Item):
-    return {}
+@app.post('/create-item/{item_id}')
+def create_item(item_id: int, item: Item):
+    if item_id in inventory:
+        return {'Error': 'Item id already exists.'}
+
+    # inventory[item_id] = {
+    #     'name': item.name,
+    #     'length': item.length,
+    #     'useful': item.useful
+    # }
+    # FastAPI can auto-replace json into class values
+
+    inventory[item_id] = item
+
+    return inventory[item_id]
