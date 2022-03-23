@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Path
+from fastapi import FastAPI, Path, Query
 from typing import Optional
 from pydantic import BaseModel
 
@@ -115,3 +115,13 @@ def update_item(item_id: int, item: UpdateItem):
         inventory[item_id]['useful'] = item.useful
 
     return inventory[item_id]
+
+
+@app.delete('/remove-item')
+def remove_item(item_id: int = Query(..., description='Item ID', gt=0)):
+    if item_id not in inventory:
+        return {'Error': 'Item id does not exists.'}
+
+    del inventory[item_id]
+
+    return {'Success': f'Item id: {item_id} removed.'}
