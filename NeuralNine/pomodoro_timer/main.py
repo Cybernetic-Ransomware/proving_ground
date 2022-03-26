@@ -66,6 +66,7 @@ class PomodoroTimer:
 
     def start_timer_threat(self):
         if not self.running:
+            self.tabs.select(0)
             t = threading.Thread(target=self.start_timer)
             t.start()
             self.running = True
