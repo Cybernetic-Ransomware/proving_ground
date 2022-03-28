@@ -147,4 +147,5 @@ class PomodoroTimer:
             self.long_break_timer_label.config(text='15:00')
 
 
-PomodoroTimer()
+if __name__ == '__main__':
+    PomodoroTimer()
