@@ -25,4 +25,3 @@ print(f'Last year taxes value: {sum((salaries * taxation)[:, 2]):.2f} PLN')
 
 print(salaries.shape)
 print(salaries.ndim)
-
