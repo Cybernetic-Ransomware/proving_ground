@@ -14,7 +14,9 @@ basket = np.array([[0, 1, 1, 0],
 
 
 # copurchases = [(i, j, np.sum(basket[:, i] + basket[:, j] == 2)) for i in range(4) for j in range(i+1, 4)]
-copurchases = [(i, j, np.sum(basket[:, i] + basket[:, j] == 2)) for i, j in list(combinations([0, 1, 2, 3], 2))]
+# copurchases = [(i, j, np.sum(basket[:, i] + basket[:, j] == 2)) for i, j in list(combinations([0, 1, 2, 3], 2))]
+copurchases = [(i, j, np.sum(basket[:, i] + basket[:, j] == 2))
+               for i, j in list(combinations(list(range(basket.shape[1])), 2))]
 
 result = max(copurchases, key=lambda x: x[2])
 
@@ -26,5 +28,6 @@ print(f'The most frequently purchased items together are: {result[:2]}, '
 #
 # print([(i, j) for i in range(4) for j in range(i+1, 4)])
 # print(list(combinations([0, 1, 2, 3], 2)))
+# print(list(range(basket.shape[1])))
 #
 # print(copurchases)
