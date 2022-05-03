@@ -22,3 +22,7 @@ print('')
 
 print([(*a, p) for a, p in zip(asked, predictions)])
 print('')
+
+
+for x in range(60):
+    print(f'x={x} -> + {str(model.predict_proba([[x]]))}')
