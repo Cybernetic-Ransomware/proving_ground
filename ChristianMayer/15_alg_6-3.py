@@ -13,3 +13,5 @@ for number in n:
     print('')
 
 # math return ValueError witch negative arguments
+# max argument value for math is 998
+# factorial_ can take higher values
