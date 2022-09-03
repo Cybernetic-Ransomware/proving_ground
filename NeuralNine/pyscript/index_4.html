@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env>
+        - numpy
+        - matplotlib
+    </py-env>
+</head>
+<body>
+
+  <input type="text" id="inp_1"/>
+  <button id="btn_1">Check it out!</button>
+
+  <py-script>
+      from js import document, Element
+      from pyodide import create_proxy
+
+      def on_click(event):
+          inp_1 = document.getElementById('inp_1')
+          inp_1.value = 'You are the choosen one!'
+
+      btn_1 = document.getElementById('btn_1')
+      btn_1.addEventListener('click', create_proxy(on_click))
+  </py-script>
+
+
+</body>
+</html>

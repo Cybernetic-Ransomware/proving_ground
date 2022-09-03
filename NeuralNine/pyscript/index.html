@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env>
+        - numpy
+        - matplotlib
+    </py-env>
+</head>
+<body>
+
+  <py-script>
+    print('Hello World yea!')
+  </py-script>
+
+  <py-script>
+    # a = 0
+    # b = 1
+    # for _ in range(100):
+    #   print(a)
+    #   a, b = b, a + b
+  </py-script>
+
+  <py-script>
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    x, y = np.random.random(25), np.random.random(25)
+    plt.scatter(x, y)
+    plt.title('Cocoa')
+    plt.xlabel('time')
+    plt.ylabel('value')
+    plt.gcf()
+
+  </py-script>
+
+
+</body>
+</html>

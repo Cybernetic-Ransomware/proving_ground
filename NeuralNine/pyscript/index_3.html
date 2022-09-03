@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env>
+        - numpy
+        - matplotlib
+    </py-env>
+</head>
+<body>
+
+
+  <py-repl>
+import numpy as np
+import matplotlib.pyplot as plt
+  </py-repl>
+
+  <py-repl>
+x, y = np.random.random(25), np.random.random(25)
+  </py-repl>
+
+  <py-repl>
+plt.scatter(x, y)
+plt.title('Cocoa')
+plt.xlabel('time')
+plt.ylabel('value')
+plt.gcf()
+  </py-repl>
+
+
+</body>
+</html>
