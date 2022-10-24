@@ -35,7 +35,7 @@ def draw_trajectory(u, theta_d):
     draw_graph(x, y)
     print(f'Graph: {u} [m/s], {theta_d} [°]')
     print(f'Max X distance: {x[-1]:.3f}m')
-    print(f'Max Y distance: {max(y):.3f}m')
+    print(f'Max Y position: {max(y):.3f}m')
     print(f'Time of flying: {t_flight:.3f}:m')
 
 
