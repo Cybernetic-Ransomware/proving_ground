@@ -1,12 +1,23 @@
+from datetime import datetime
+import os
+# import sys
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import pandas as pd
 
 
+# application_path = os.path.dirname(sys.executable)  # does not work well on venvs
+application_path = os.path.dirname(os.path.abspath(__file__))
+current_time = datetime.now()
+current_time_text = current_time.strftime("%Y-%m-%d_%H-%M")
+
+
 website = r'https://wspieram.to/'
 path = r'H:\PycharmProjects\Selenium\web_drivers\chromedriver'
 
+# to avoid opening browser window
 options = Options()
 options.headless = True
 
@@ -40,7 +51,13 @@ for container in containters:
 my_dict = {'titles': titles, 'categoryies_and_locations': categoryies_and_locations,
            'descriptions': descriptions, 'hyperlinks': hyperlinks}
 df_headlines = pd.DataFrame(my_dict)
-df_headlines.to_csv('headline.csv')
+
+
+#  use os to unificatate difrent roots on Windows, macOS and Linux
+file_name = f'{current_time_text}_promoted_foundings.csv'
+route_to_save = os.path.join(application_path, file_name)
+
+df_headlines.to_csv(route_to_save)
 
 
 driver.quit()
