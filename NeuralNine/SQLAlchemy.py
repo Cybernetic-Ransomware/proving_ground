@@ -16,6 +16,7 @@ class Person(Base):
     age = Column('age', Integer)
 
     def __init__(self, snn, firstname, lastname, gender, age):
+        super().__init__()
         self.ssn = snn
         self.firstname = firstname
         self.lastname = lastname
@@ -34,6 +35,7 @@ class Thing(Base):
     owner = Column(Integer, ForeignKey('people.ssn'))
 
     def __init__(self, tid, description, owner):
+        super().__init__()
         self.tid = tid
         self.description = description
         self.owner = owner
