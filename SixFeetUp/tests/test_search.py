@@ -31,7 +31,7 @@ def test_basic_duckduckgo_search(page: Page) -> None:
     #   pytest way, but without a waiting till appear
     # assert 'halfling badger rider' == page.input_value('id=search_form_input')
 
-    # class ="OgdwYG6KE2qthn9XQWFC"
+    # HTML object class ="OgdwYG6KE2qthn9XQWFC"
     page.locator('.OgdwYG6KE2qthn9XQWFC span').nth(8).wait_for()
     descriptions = page.locator('.OgdwYG6KE2qthn9XQWFC span').all_text_contents()
 
@@ -40,6 +40,13 @@ def test_basic_duckduckgo_search(page: Page) -> None:
     # matches = [desc for desc in descriptions for val_keyword in validating_keywords if val_keyword in desc.lower()]
     matches = [desc for desc in descriptions if any(val_key in desc.lower() for val_key in validating_keywords)]
 
+    #  weryfy if there is at least one keyword in webpages descriptions
     assert len(matches) > 0
+
+    #  pytest way to check webpage title
+    # assert 'halfling badger rider at DuckDuckGo' in page.title()
+
+    #   playwright builded in assertion to check site title
+    expect(page).to_have_title('halfling badger rider at DuckDuckGo')
 
     pass
