@@ -1,0 +1,34 @@
+from SixFeetUp.pages.search import DuckDuckGoSearchPage
+from playwright.sync_api import expect, Page
+
+
+r"""
+    to run with visible effects:
+        py -m pytest SixFeetUp\tests --headed --slowmo 500
+
+"""
+
+searching_phrase = 'halfling badger rider'
+validating_keywords = ['old world', 'warhammer', 'mootland', 'empire', 'ogre']
+
+
+def test_basic_duckduckgo_search(page: Page) -> None:
+    search_page = DuckDuckGoSearchPage(page)
+
+    search_page.load()
+
+    search_page.search(searching_phrase)
+
+    expect(page.locator('id=search_form_input')).to_have_value(searching_phrase)
+
+    # HTML object class ="OgdwYG6KE2qthn9XQWFC"
+    page.locator('.OgdwYG6KE2qthn9XQWFC span').nth(8).wait_for()
+    descriptions = page.locator('.OgdwYG6KE2qthn9XQWFC span').all_text_contents()
+
+    matches = [desc for desc in descriptions if any(val_key in desc.lower() for val_key in validating_keywords)]
+
+    assert len(matches) > 0
+
+    expect(page).to_have_title('halfling badger rider at DuckDuckGo')
+
+    pass

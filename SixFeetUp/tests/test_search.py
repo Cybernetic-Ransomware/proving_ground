@@ -1,9 +1,9 @@
 from playwright.sync_api import expect, Page
 
 
-"""
+r"""
     to run with visible effects:
-        py -m pytest tests --headed --slowmo 1000  
+        py -m pytest SixFeetUp\tests --headed --slowmo 500
 
 """
 
