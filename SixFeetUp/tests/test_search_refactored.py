@@ -1,4 +1,5 @@
 from SixFeetUp.pages.search import DuckDuckGoSearchPage
+from SixFeetUp.pages.result import DuckDuckGoResultPage
 from playwright.sync_api import expect, Page
 
 
@@ -14,20 +15,14 @@ validating_keywords = ['old world', 'warhammer', 'mootland', 'empire', 'ogre']
 
 def test_basic_duckduckgo_search(page: Page) -> None:
     search_page = DuckDuckGoSearchPage(page)
+    result_page = DuckDuckGoResultPage(page)
 
     search_page.load()
-
     search_page.search(searching_phrase)
 
-    expect(page.locator('id=search_form_input')).to_have_value(searching_phrase)
+    expect(result_page.seatch_input).to_have_value(searching_phrase)
 
-    # HTML object class ="OgdwYG6KE2qthn9XQWFC"
-    page.locator('.OgdwYG6KE2qthn9XQWFC span').nth(8).wait_for()
-    descriptions = page.locator('.OgdwYG6KE2qthn9XQWFC span').all_text_contents()
-
-    matches = [desc for desc in descriptions if any(val_key in desc.lower() for val_key in validating_keywords)]
-
-    assert len(matches) > 0
+    assert result_page.result_descriptions_contains_phrase(validating_keywords)
 
     expect(page).to_have_title('halfling badger rider at DuckDuckGo')
 
