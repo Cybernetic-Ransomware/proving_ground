@@ -13,9 +13,10 @@ searching_phrase = 'halfling badger rider'
 validating_keywords = ['old world', 'warhammer', 'mootland', 'empire', 'ogre']
 
 
-def test_basic_duckduckgo_search(page: Page) -> None:
-    search_page = DuckDuckGoSearchPage(page)
-    result_page = DuckDuckGoResultPage(page)
+def test_basic_duckduckgo_search(
+        page: Page,
+        search_page: DuckDuckGoSearchPage,
+        result_page: DuckDuckGoResultPage) -> None:
 
     search_page.load()
     search_page.search(searching_phrase)
