@@ -1,6 +1,8 @@
 import pathlib
 
 
+SKIP_DIRS = ["temp", "temporary_files", "logs"]
+
 files_folder = pathlib.Path("E:\LARPy - RPG\Zew Cthulhu")
 print(files_folder)
 
@@ -34,14 +36,14 @@ def return_direct() -> None:
 def return_sufix(suffix: str='*', keyword: str='*') -> None:
     separation()
     print("All folders:")
-    [print(f) for f in list(files_folder.rglob(f"*{keyword}*")) if f.is_dir()]
+    [print(f) for f in list(files_folder.rglob(f"*{keyword}*")) if f.is_dir() and set(f.parts).isdisjoint(SKIP_DIRS)]
     separation()
     print('All files:')
-    [print(f) for f in list(files_folder.rglob(f"*{keyword}*.{suffix}")) if f.is_file()]
+    [print(f) for f in list(files_folder.rglob(f"*{keyword}*.{suffix}")) if f.is_file() and set(f.parts).isdisjoint(SKIP_DIRS)]
 
 
 if __name__ == '__main__':
     # return_direct()
     # return_all()
-    # return_sufix(suffix='pdf', keyword='yellow')
-    return_sufix(keyword='1')
+    return_sufix(suffix='pdf', keyword='yellow')
+    # return_sufix(keyword='1')
