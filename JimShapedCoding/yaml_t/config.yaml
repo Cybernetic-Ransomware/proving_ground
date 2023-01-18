@@ -1,0 +1,21 @@
+---
+person:
+  name: "Jurgen"
+  age: 42
+  is_male: true
+  weight: 82.2
+  fav_numbers:
+    - 12
+    - 29
+    - 31
+    - 18
+  places:
+    - localisation: "Panama"
+      year: 2016
+      reviev: "good"
+    - localisation: "Majorka"
+      year: 2015
+      reviev: "average"
+    - localisation: "Uranus"
+      year: 2011
+      reviev: "awful"
